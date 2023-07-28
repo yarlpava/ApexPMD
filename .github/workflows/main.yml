@@ -15,8 +15,6 @@ jobs:
           sfdx plugins:install @salesforce/sfdx-scanner
       - name: Run sfdx scanner
         run: |
-          sfdx scanner:run -t src
-          sfdx scanner:run --format table
-          sfdx scanner:run -c Security
+          sfdx scanner:run -t src --format table -r rulesets/apex/quickstart.xml
           
 
