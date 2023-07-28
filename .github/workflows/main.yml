@@ -2,7 +2,7 @@ name: Run sfdx scanner
 on:
   pull_request:
     branches:
-      - main
+      - main/*
 jobs:
   scan:
     runs-on: ubuntu-latest
