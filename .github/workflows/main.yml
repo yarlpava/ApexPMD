@@ -14,7 +14,7 @@ jobs:
           sfdx plugins:install @salesforce/sfdx-scanner
       - name: Run sfdx scanner
         run: |
-          sfdx scanner:run -t src
+          sfdx scanner:run --format xml -t src
           sfdx scanner:run -c security,best-practices
           sfdx scanner:run -r rulesets/apex_security_best_practices.xml
           sfdx force:logout
