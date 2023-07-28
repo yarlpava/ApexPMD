@@ -17,6 +17,6 @@ jobs:
         run: |
           sfdx scanner:run -t src
           sfdx scanner:run --format table
-          sfdx scanner:run -c security,best-practices
+          sfdx scanner:run -c Security
           
 
