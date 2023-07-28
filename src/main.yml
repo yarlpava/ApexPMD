@@ -1,8 +1,9 @@
-name: Run sfdx scanner
+name: SFDX Apex PMD Code scanner
 on:
   pull_request:
     branches:
       - main
+      - testing
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -14,6 +15,6 @@ jobs:
           sfdx plugins:install @salesforce/sfdx-scanner
       - name: Run sfdx scanner
         run: |
-          sfdx scanner:run -t src
-          sfdx scanner:run -c security,best-practices
-          sfdx scanner:run -r rulesets/apex_security_best_practices.xml
+          sfdx scanner:run -t src --format table -c Security -r rulesets/apex/quickstart.xml --normalize-severity --severity-threshold 3  
+          
+
