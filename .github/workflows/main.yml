@@ -15,6 +15,6 @@ jobs:
           sfdx plugins:install @salesforce/sfdx-scanner
       - name: Run sfdx scanner
         run: |
-          sfdx scanner:run -t src --format table -c Security -r rulesets/apex/quickstart.xml --normalize-severity 
+          sfdx scanner:run -t src --format table -c Security -r rulesets/apex/quickstart.xml --normalize-severity --severity-threshold  
           
 
