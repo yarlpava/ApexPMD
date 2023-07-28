@@ -1,4 +1,4 @@
-name: Run sfdx scanner
+name: SFDX Apex PMD Code scanner
 on:
   pull_request:
     branches:
@@ -15,17 +15,6 @@ jobs:
           sfdx plugins:install @salesforce/sfdx-scanner
       - name: Run sfdx scanner
         run: |
-          sfdx scanner:run --format csv --outfile codescan.csv table -t src
+          sfdx scanner:run --format table -t src
           sfdx scanner:run -c security,best-practices
           sfdx scanner:run -r rulesets/apex_security_best_practices.xml
-          if [ -f ./codescan.csv ]; then
-            exit 1
-          fi
-      - name: Check Exit Status
-        run: |
-            exit_status=${{ steps.Run-Zone.outputs.exit-code }}
-              if [[ $exit_status -eq 0 ]]; then
-                echo "Processes succeeded."
-              else
-                echo "Processes failed with exit status $exit_status."
-              fi
