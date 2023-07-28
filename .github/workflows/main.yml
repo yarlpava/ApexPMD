@@ -15,7 +15,7 @@ jobs:
           sfdx plugins:install @salesforce/sfdx-scanner
       - name: Run sfdx scanner
         run: |
-          sfdx scanner:run --format sarif --outfile codescan.csv table -t src
+          sfdx scanner:run --format csv --outfile codescan.csv table -t src
           sfdx scanner:run -c security,best-practices
           sfdx scanner:run -r rulesets/apex_security_best_practices.xml
           if [ -f ./codescan.csv ]; then
