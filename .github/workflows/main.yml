@@ -15,9 +15,9 @@ jobs:
           sfdx plugins:install @salesforce/sfdx-scanner
       - name: Run sfdx scanner
         run: |
-          sfdx scan -t src
-          sfdx scan --format table
-          sfdx scan -c security,best-practices
-          sfdx scan -r rulesets/apex_security_best_practices.xml
-          sfdx scan  -n
-          sfdx scan exit 1
+          sfdx scanner:run -target src
+          sfdx scanner:run --format table
+          sfdx scanner:run --category Security
+          sfdx scanner:run --ruleset Salesforce Security Best Practices
+          sfdx scanner:run --normalize-severity
+          sfdx scanner:run --violations-cause-error
