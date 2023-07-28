@@ -1,0 +1,28 @@
+name: Run sfdx scanner
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install sfdx
+        run:  |
+          npm install @salesforce/cli --global
+          sfdx plugins:install @salesforce/sfdx-scanner
+      - name: Run sfdx scanner
+        run: |
+          sfdx scanner:run -t src
+          sfdx scanner:run -c security,best-practices
+          sfdx scanner:run -r rulesets/apex_security_best_practices.xml
+          sfdx scanner:run -f sarif 
+      - name: Check Exit Status
+            run: |
+              exit_status=${{ steps.Run-Zone.outputs.exit-code }}
+              if [[ $exit_status -eq 0 ]]; then
+                echo "Processes succeeded."
+              else
+                echo "Processes failed with exit status $exit_status."
+              fi
