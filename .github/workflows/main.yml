@@ -17,7 +17,7 @@ jobs:
         run: |
           sfdx scanner:run -target src
           sfdx scanner:run --format table
-          sfdx scanner:run --category Security
-          sfdx scanner:run --ruleset Salesforce Security Best Practices
+          sfdx scanner:run -c security,best-practices
+          sfdx scanner:run -r rulesets/apex_security_best_practices.xml
           sfdx scanner:run --normalize-severity
           sfdx scanner:run --violations-cause-error
