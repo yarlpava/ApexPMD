@@ -1,5 +1,6 @@
 name: SFDX Apex PMD Code scanner
 on:
+  push:
   pull_request:
     branches:
       - main
